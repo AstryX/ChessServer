@@ -19,7 +19,7 @@ public class CHESSsocket {
 
         ServerSocket serverSocket = null;
         try {
-            serverSocket = new ServerSocket(4444);
+            serverSocket = new ServerSocket(25565);
         } catch (IOException e) {
             System.err.println("Could not listen on port: 4444.");
             System.exit(1);
