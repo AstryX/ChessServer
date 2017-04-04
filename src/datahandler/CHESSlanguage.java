@@ -10,7 +10,7 @@ package datahandler;
  *
  * @author rdereskevicius
  */
-public class KnockKnockProtocol {
+public class CHESSlanguage {
     private static final int WAITING = 0;
     private static final int SENTKNOCKKNOCK = 1;
     private static final int SENTCLUE = 2;
@@ -30,9 +30,11 @@ public class KnockKnockProtocol {
 
     public String processInput(String theInput) {
         String theOutput = null;
-
-        if (state == WAITING) {
-            theOutput = "Knock! Knock!";
+        if (theInput.charAt(0)=='c'&&theInput.charAt(1)=='r'&&theInput.charAt(2)=='l'){
+            theOutput = "Received lobby creation request";
+        }
+        else if (state == WAITING) {
+            theOutput = "Logged in.";
             state = SENTKNOCKKNOCK;
         } else if (state == SENTKNOCKKNOCK) {
             if (theInput.equalsIgnoreCase("Who's there?")) {

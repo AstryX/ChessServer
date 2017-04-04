@@ -38,7 +38,7 @@ public class CHESSsocket {
                 new InputStreamReader(
                 clientSocket.getInputStream()));
         String inputLine, outputLine;
-        KnockKnockProtocol kkp = new KnockKnockProtocol();
+        CHESSlanguage kkp = new CHESSlanguage();
 
         outputLine = kkp.processInput(null);
         out.println(outputLine);
