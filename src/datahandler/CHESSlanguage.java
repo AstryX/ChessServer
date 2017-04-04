@@ -30,23 +30,27 @@ public class CHESSlanguage {
 
     public String processInput(String theInput) {
         String theOutput = null;
-        if (theInput.charAt(0)=='c'&&theInput.charAt(1)=='r'&&theInput.charAt(2)=='l'){
-            System.out.println("Received lobby creation request");
-            theOutput = "Received lobby creation request";
-            state = ANOTHER;
-        }
-        else if (state == WAITING) {
+        if (state == WAITING) {
             theOutput = "Logged in.";
             System.out.println("Logged in.");
             state = SENTKNOCKKNOCK;
         } else if (state == SENTKNOCKKNOCK) {
-            if (theInput.equalsIgnoreCase("Who's there?")) {
+            if (theInput.charAt(0)=='c'&&theInput.charAt(1)=='r'&&theInput.charAt(2)=='l'){
+                System.out.println("Received lobby creation request");
+                theOutput = "Received lobby creation request";
+                state = ANOTHER;
+            }
+            else{
+                System.out.println("FAIL");
+            }
+            /*if (theInput.equalsIgnoreCase("Who's there?")) {
                 theOutput = clues[currentJoke];
                 state = SENTCLUE;
             } else {
                 theOutput = "You're supposed to say \"Who's there?\"! " +
 			    "Try again. Knock! Knock!";
-            }
+            }*/
+            
         } else if (state == SENTCLUE) {
             if (theInput.equalsIgnoreCase(clues[currentJoke] + " who?")) {
                 theOutput = answers[currentJoke] + " Want another? (y/n)";
