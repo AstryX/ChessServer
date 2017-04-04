@@ -62,7 +62,7 @@ public class CHESSlanguage {
 			    "! Try again. Knock! Knock!";
                 state = SENTKNOCKKNOCK;
             }
-        } else if (state == ANOTHER) {
+        } /*else if (state == ANOTHER) {
             if (theInput.equalsIgnoreCase("y")) {
                 theOutput = "Knock! Knock!";
                 if (currentJoke == (NUMJOKES - 1))
@@ -74,7 +74,7 @@ public class CHESSlanguage {
                 theOutput = "Bye.";
                 state = WAITING;
             }
-        }
+        }*/
         return theOutput;
     }
 }
