@@ -31,10 +31,12 @@ public class CHESSlanguage {
     public String processInput(String theInput) {
         String theOutput = null;
         if (theInput.charAt(0)=='c'&&theInput.charAt(1)=='r'&&theInput.charAt(2)=='l'){
+            System.out.println("Received lobby creation request");
             theOutput = "Received lobby creation request";
         }
         else if (state == WAITING) {
             theOutput = "Logged in.";
+            System.out.println("Logged in.");
             state = SENTKNOCKKNOCK;
         } else if (state == SENTKNOCKKNOCK) {
             if (theInput.equalsIgnoreCase("Who's there?")) {
