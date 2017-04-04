@@ -24,15 +24,21 @@ public class SocketUserThread  {
         }
     }
     private void doWork() throws IOException{
+        System.out.println("1");
         PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+        System.out.println("2");
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(
                 clientSocket.getInputStream()));
+        System.out.println("3");
+        
         String inputLine, outputLine;
         CHESSlanguage kkp = new CHESSlanguage();
-
+        System.out.println("4");
         outputLine = kkp.processInput(null);
+        System.out.println("5");
         out.println(outputLine);
+        System.out.println("6");
 
         while ((inputLine = in.readLine()) != null) {
              outputLine = kkp.processInput(inputLine);
