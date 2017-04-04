@@ -48,7 +48,7 @@ public class CHESSsocket {
     }
     
     public static void main(String[] args) throws IOException {
-
+        CHESSsocket work = new CHESSsocket();
         
     }
 }
