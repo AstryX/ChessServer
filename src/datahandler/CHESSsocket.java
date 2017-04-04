@@ -29,9 +29,9 @@ public class CHESSsocket {
 
         
 
-        
+        clientSocket = null;
         while(true){
-            clientSocket = null;
+            
             try {
                 clientSocket = serverSocket.accept();
                 new Thread(){
