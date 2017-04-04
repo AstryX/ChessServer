@@ -15,9 +15,11 @@ import java.io.*;
  * @author rdereskevicius
  */
 public class CHESSsocket {
-    public static void main(String[] args) throws IOException {
-
-        ServerSocket serverSocket = null;
+    private ServerSocket serverSocket;
+    private Socket clientSocket;
+    
+    public CHESSsocket(){
+        serverSocket = null;
         try {
             serverSocket = new ServerSocket(25565);
         } catch (IOException e) {
@@ -25,33 +27,28 @@ public class CHESSsocket {
             System.exit(1);
         }
 
-        Socket clientSocket = null;
-        try {
-            clientSocket = serverSocket.accept();
-        } catch (IOException e) {
-            System.err.println("Accept failed.");
-            System.exit(1);
+        
+
+        
+        while(true){
+            clientSocket = null;
+            try {
+                clientSocket = serverSocket.accept();
+                new Thread(){
+                    @Override
+                    public void run() {
+                        SocketUserThread acceptUser = new SocketUserThread(serverSocket,clientSocket);
+                    }
+                }.start();
+            } catch (IOException e) {
+                System.err.println("Accept failed.");
+                System.exit(1);
+            }
         }
+    }
+    
+    public static void main(String[] args) throws IOException {
 
-        PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(
-                clientSocket.getInputStream()));
-        String inputLine, outputLine;
-        CHESSlanguage kkp = new CHESSlanguage();
-
-        outputLine = kkp.processInput(null);
-        out.println(outputLine);
-
-        while ((inputLine = in.readLine()) != null) {
-             outputLine = kkp.processInput(inputLine);
-             out.println(outputLine);
-             if (outputLine.equals("Bye."))
-                break;
-        }
-        out.close();
-        in.close();
-        clientSocket.close();
-        serverSocket.close();
+        
     }
 }
