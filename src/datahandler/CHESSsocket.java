@@ -20,10 +20,12 @@ public class CHESSsocket {
     private Socket clientSocket;
     public static List<LobbyPublic> publicLobbyData;
     public static List<LobbyPrivate> privateLobbyData;
+    public static List<ChessMatch> gamesList;
     
     public CHESSsocket(){
         publicLobbyData = new ArrayList<LobbyPublic>();
         privateLobbyData = new ArrayList<LobbyPrivate>();
+        gamesList = new ArrayList<ChessMatch>();
         serverSocket = null;
         try {
             serverSocket = new ServerSocket(25565);

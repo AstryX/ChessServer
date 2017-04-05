@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package datahandler;
 
+package datahandler;
+import java.io.*;
 /**
  *
  * @author Boo
@@ -16,7 +17,11 @@ public class LobbyPrivate {
     private String lobbyPlayer1;
     private String lobbyPlayer2;
     private String isLobbySecure;
-    public LobbyPrivate(String tempName, String tempID, String tempPassword, String tempPlayer, String tempSecure){
+    private ObjectOutputStream out;
+    private ObjectInputStream in;
+    public LobbyPrivate(String tempName, String tempID, String tempPassword, String tempPlayer, String tempSecure, ObjectOutputStream tempOut, ObjectInputStream tempIn){
+        out = tempOut;
+        in = tempIn;
         lobbyName = tempName;
         lobbyID = tempID;
         lobbyPassword = tempPassword;
@@ -48,4 +53,12 @@ public class LobbyPrivate {
     public String getLobbySecure(){
         return isLobbySecure;
     }
+    public ObjectOutputStream getOutputStream(){
+        return out;
+    }
+    
+    public ObjectInputStream getInputStream(){
+        return in;
+    }
+    
 }

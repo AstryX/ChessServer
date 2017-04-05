@@ -6,10 +6,10 @@
 package datahandler;
 import static datahandler.CHESSsocket.privateLobbyData;
 import static datahandler.CHESSsocket.publicLobbyData;
+import static datahandler.CHESSsocket.gamesList;
 import java.net.*;
 import java.io.*;
 import java.util.*;
-import jdk.nashorn.internal.objects.NativeString;
 import java.util.concurrent.ThreadLocalRandom;
 /**
  *
@@ -63,7 +63,7 @@ public class SocketUserThread  {
                     else lSecure="true";
                     
                     String lID = Integer.toString(ThreadLocalRandom.current().nextInt(100000, 200000 + 1));
-                    LobbyPrivate newPrivateLobby = new LobbyPrivate(lName,lID,lPassword,lPlayer,lSecure);
+                    LobbyPrivate newPrivateLobby = new LobbyPrivate(lName,lID,lPassword,lPlayer,lSecure,out,in);
                     LobbyPublic newPublicLobby = new LobbyPublic(lName,lID,lSecure);
                     privateLobbyData.add(newPrivateLobby);
                     publicLobbyData.add(newPublicLobby);
@@ -82,11 +82,97 @@ public class SocketUserThread  {
                 }
                 //Checks for password
                 if (opcode.equals("joi")){
-                    
+                    String lName = "";
+                    String lPassword = "";
+                    String lPlayer = "";
+                    String lID = "";
+                    int correctIndex = 0;
+                    String matchDataP1="";
+                    String matchDataP2="";
+                    int moveFirst = ThreadLocalRandom.current().nextInt(1, 2 + 1);
+                    for(int i = 4;inputLine.charAt(i)!='$';i++){
+                        if(inputLine.charAt(i)=='/'||inputLine.charAt(i)=='$')state++;
+                        else{
+                            if(state==0)lName=lName+inputLine.charAt(i);
+                            if(state==1)lID=lID+inputLine.charAt(i);
+                            if(state==2)lPassword=lPassword+inputLine.charAt(i);
+                            if(state==3)lPlayer=lPlayer+inputLine.charAt(i);
+                        }
+                    }
+                    for(int i = 0; i < privateLobbyData.size(); i++){
+                        if(privateLobbyData.get(i).getLobbyName().equals(lName)){
+                            if(privateLobbyData.get(i).getLobbyID().equals(lID)){
+                                if(privateLobbyData.get(i).getLobbyPassword().equals(lPassword)){
+                                    
+                                    ChessMatch tempMatch;
+                                    
+                                    if(moveFirst==1){
+                                        tempMatch = new ChessMatch(lName, lID, lPassword,
+                                            privateLobbyData.get(i).getLobbyPlayer1(), lPlayer,
+                                            privateLobbyData.get(i).getOutputStream(),
+                                            privateLobbyData.get(i).getInputStream(), out, in);
+                                        
+                                    }
+                                    else{
+                                        tempMatch = new ChessMatch(lName, lID, lPassword,
+                                            lPlayer, privateLobbyData.get(i).getLobbyPlayer1(),
+                                            out,
+                                            in, privateLobbyData.get(i).getOutputStream(), privateLobbyData.get(i).getInputStream());
+                                        
+                                    }
+                                    
+                                    gamesList.add(tempMatch);
+                                    correctIndex=gamesList.indexOf(tempMatch);
+                                    privateLobbyData.remove(i);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    gamesList.get(correctIndex).runMatch();
                 }
                 //Makes a move
-                if (opcode.equals("pwc")){
+                if (opcode.equals("mkm")){
+                    String lOriginY = "";
+                    String lOriginX = "";
+                    String lDestinationY = "";
+                    String lDestinationX = "";
+                    String lName = "";
+                    String lID = "";
+                    String lWhite = "";
+                    String lBlack = "";
+                    String lTurn = "";
+                    for(int i = 4;inputLine.charAt(i)!='$';i++){
+                        if(inputLine.charAt(i)=='/'||inputLine.charAt(i)=='$')state++;
+                        else{
+                            if(state==0)lOriginY=lOriginY+inputLine.charAt(i);
+                            if(state==1)lOriginX=lOriginX+inputLine.charAt(i);
+                            if(state==2)lDestinationY=lDestinationY+inputLine.charAt(i);
+                            if(state==3)lDestinationX=lDestinationX+inputLine.charAt(i);
+                            if(state==4)lName=lName+inputLine.charAt(i);
+                            if(state==5)lID=lID+inputLine.charAt(i);
+                            if(state==6)lWhite=lWhite+inputLine.charAt(i);
+                            if(state==7)lBlack=lBlack+inputLine.charAt(i);
+                            if(state==8)lTurn=lTurn+inputLine.charAt(i);
+                        }
+                    }
                     
+                    for(int i = 0; i < gamesList.size(); i++){
+                        if(gamesList.get(i).getLobbyName().equals(lName)){
+                            if(gamesList.get(i).getLobbyID().equals(lID)){
+                                if(gamesList.get(i).getLobbyPlayer1().equals(lWhite)){
+                                    if(gamesList.get(i).getLobbyPlayer2().equals(lBlack)){
+                                        if(lTurn.equals("1")){
+                                            gamesList.get(i).sendMsgP2(lOriginY+"/"+lOriginX+"/"+lDestinationY+"/"+lDestinationX+"$");
+                                        }
+                                        else{
+                                            gamesList.get(i).sendMsgP1(lOriginY+"/"+lOriginX+"/"+lDestinationY+"/"+lDestinationX+"$");
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
                 //Joins a lobby
                 if (opcode.equals("pwc")){
