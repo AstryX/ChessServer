@@ -23,6 +23,8 @@ public class SocketUserThread  {
     private List<LobbyPublic> tpublicLobbyData;
     public SocketUserThread(ServerSocket tempServerSocket, Socket tempClientSocket){
         state = 0;
+        tpublicLobbyData = new ArrayList<LobbyPublic>();
+        tprivateLobbyData = new ArrayList<LobbyPrivate>();
         serverSocket = tempServerSocket;
         clientSocket = tempClientSocket;
         try{
