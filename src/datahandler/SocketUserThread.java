@@ -19,12 +19,8 @@ public class SocketUserThread  {
     private ServerSocket serverSocket;
     private Socket clientSocket;
     public int state;
-    private List<LobbyPrivate> tprivateLobbyData;
-    private List<LobbyPublic> tpublicLobbyData;
     public SocketUserThread(ServerSocket tempServerSocket, Socket tempClientSocket){
         state = 0;
-        tpublicLobbyData = new ArrayList<LobbyPublic>();
-        tprivateLobbyData = new ArrayList<LobbyPrivate>();
         serverSocket = tempServerSocket;
         clientSocket = tempClientSocket;
         try{
@@ -69,13 +65,19 @@ public class SocketUserThread  {
                     String lID = Integer.toString(ThreadLocalRandom.current().nextInt(100000, 200000 + 1));
                     LobbyPrivate newPrivateLobby = new LobbyPrivate(lName,lID,lPassword,lPlayer,lSecure);
                     LobbyPublic newPublicLobby = new LobbyPublic(lName,lID,lSecure);
-                    tprivateLobbyData.add(newPrivateLobby);
-                    tpublicLobbyData.add(newPublicLobby);
+                    privateLobbyData.add(newPrivateLobby);
+                    publicLobbyData.add(newPublicLobby);
                 }
                 //Refreshes lobby list
                 if (opcode.equals("ref")){
                     System.out.println("1");
-                    out.writeObject(tpublicLobbyData);
+                    String refreshText = "";
+                    for(int i = 0; i < publicLobbyData.size(); i++){
+                        if(i==publicLobbyData.size()-1)refreshText=publicLobbyData.get(i).getLobbyName()+"/"+publicLobbyData.get(i).getLobbyID()+"/"+publicLobbyData.get(i).getLobbySecure()+"$";
+                        else refreshText=publicLobbyData.get(i).getLobbyName()+"/"+publicLobbyData.get(i).getLobbyID()+"/"+publicLobbyData.get(i).getLobbySecure()+"/";
+                    }
+                    
+                    out.writeObject(refreshText);
                     System.out.println("2");
                 }
                 //Checks for password
