@@ -62,7 +62,9 @@ public class SocketUserThread  {
                     }
                     if(lPlayer.isEmpty()==true)lSecure="false";
                     else lSecure="true";
+                    
                     String lID = Integer.toString(ThreadLocalRandom.current().nextInt(100000, 200000 + 1));
+                    System.out.println(lName+" "+lID+" "+lPassword+" "+lPlayer+" "+lSecure);
                     LobbyPrivate newPrivateLobby = new LobbyPrivate(lName,lID,lPassword,lPlayer,lSecure);
                     LobbyPublic newPublicLobby = new LobbyPublic(lName,lID,lSecure);
                     privateLobbyData.add(newPrivateLobby);
