@@ -59,6 +59,7 @@ public class SocketUserThread  {
                             if(state==2)lPlayer=lPlayer+inputLine.charAt(i);
                         }
                     }
+                    System.out.println("Test:<"+lPassword+">");
                     if(lPlayer.isEmpty()==true)lSecure="false";
                     else lSecure="true";
                     
@@ -81,7 +82,7 @@ public class SocketUserThread  {
                     System.out.println("2");
                 }
                 //Checks for password
-                if (opcode.equals("pwc")){
+                if (opcode.equals("joi")){
                     
                 }
                 //Makes a move

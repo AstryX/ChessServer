@@ -5,7 +5,9 @@
         <group>
             <file>file:/C:/Users/Boo/Documents/GitHub/ChessServer/src/datahandler/CHESSsocket.java</file>
             <file>file:/C:/Users/Boo/Documents/GitHub/ChessServer/src/datahandler/SocketUserThread.java</file>
+            <file>file:/C:/Users/Boo/Documents/GitHub/ChessServer/src/datahandler/LobbyPrivate.java</file>
             <file>file:/C:/Users/Boo/Documents/GitHub/ChessServer/src/datahandler/CHESSlanguage.java</file>
+            <file>file:/C:/Users/Boo/Documents/GitHub/ChessServer/src/datahandler/LobbyPublic.java</file>
         </group>
     </open-files>
 </project-private>
