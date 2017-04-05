@@ -59,8 +59,7 @@ public class SocketUserThread  {
                             if(state==2)lPlayer=lPlayer+inputLine.charAt(i);
                         }
                     }
-                    System.out.println("Test:<"+lPassword+">");
-                    if(lPlayer.isEmpty()==true)lSecure="false";
+                    if(lPassword.isEmpty()==true)lSecure="false";
                     else lSecure="true";
                     
                     String lID = Integer.toString(ThreadLocalRandom.current().nextInt(100000, 200000 + 1));
