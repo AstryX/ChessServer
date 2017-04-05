@@ -71,8 +71,7 @@ public class SocketUserThread  {
                 //Refreshes lobby list
                 if (opcode.equals("ref")){
                     System.out.println("1");
-                    String debugstr = publicLobbyData.get(0).getLobbyName();
-                    out.writeObject(debugstr);
+                    out.writeObject(publicLobbyData);
                     System.out.println("2");
                 }
                 //Checks for password
