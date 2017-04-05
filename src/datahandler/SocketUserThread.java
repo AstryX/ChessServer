@@ -67,6 +67,7 @@ public class SocketUserThread  {
                     LobbyPublic newPublicLobby = new LobbyPublic(lName,lID,lSecure);
                     privateLobbyData.add(newPrivateLobby);
                     publicLobbyData.add(newPublicLobby);
+                    System.out.println(publicLobbyData.get(0).getLobbyName()+" "+publicLobbyData.get(0).getLobbyID());
                 }
                 //Refreshes lobby list
                 if (opcode.equals("ref")){
@@ -84,7 +85,7 @@ public class SocketUserThread  {
                 if (opcode.equals("pwc")){
                     
                 }
-                System.out.println(publicLobbyData.get(0).getLobbyName()+" "+publicLobbyData.get(0).getLobbyID());
+                
                 //outputLine = kkp.processInput((String)inputLine);
                 //out.writeObject(outputLine);
             }
