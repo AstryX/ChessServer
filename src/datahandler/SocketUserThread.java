@@ -84,6 +84,7 @@ public class SocketUserThread  {
                 if (opcode.equals("pwc")){
                     
                 }
+                System.out.println(publicLobbyData.get(0).getLobbyName()+" "+publicLobbyData.get(0).getLobbyID());
                 //outputLine = kkp.processInput((String)inputLine);
                 //out.writeObject(outputLine);
             }
