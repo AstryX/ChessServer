@@ -87,8 +87,7 @@ public class SocketUserThread  {
                     String lPlayer = "";
                     String lID = "";
                     int correctIndex = 0;
-                    String matchDataP1="";
-                    String matchDataP2="";
+                    
                     int moveFirst = ThreadLocalRandom.current().nextInt(1, 2 + 1);
                     for(int i = 4;inputLine.charAt(i)!='$';i++){
                         if(inputLine.charAt(i)=='/'||inputLine.charAt(i)=='$')state++;
@@ -103,7 +102,7 @@ public class SocketUserThread  {
                         if(privateLobbyData.get(i).getLobbyName().equals(lName)){
                             if(privateLobbyData.get(i).getLobbyID().equals(lID)){
                                 if(privateLobbyData.get(i).getLobbyPassword().equals(lPassword)){
-                                    
+                                    System.out.println("Lobby found");
                                     ChessMatch tempMatch;
                                     
                                     if(moveFirst==1){
