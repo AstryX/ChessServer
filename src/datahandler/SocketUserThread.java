@@ -47,7 +47,6 @@ public class SocketUserThread  {
                 state = 0;
                 //Creates a lobby
                 if (opcode.equals("crl")){
-                    System.out.println("1");
                     String lName = "";
                     String lPassword = "";
                     String lPlayer = "";
@@ -72,7 +71,8 @@ public class SocketUserThread  {
                 //Refreshes lobby list
                 if (opcode.equals("ref")){
                     System.out.println("1");
-                    out.writeObject(publicLobbyData);
+                    String debugstr = publicLobbyData.get(0).getLobbyName();
+                    out.writeObject(debugstr);
                     System.out.println("2");
                 }
                 //Checks for password
