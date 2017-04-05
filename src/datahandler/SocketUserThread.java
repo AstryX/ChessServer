@@ -43,9 +43,7 @@ public class SocketUserThread  {
         //out.writeObject(outputLine);
         try{
             while ((inputLine = (String)in.readObject()) != null) {
-                String opcode = inputLine.substring(0,2);
-                System.out.println(inputLine.charAt(0)+" "+inputLine.charAt(1)+inputLine.charAt(2));
-                System.out.println(opcode);
+                String opcode = inputLine.substring(0,3);
                 state = 0;
                 //Creates a lobby
                 if (opcode.equals("crl")){
