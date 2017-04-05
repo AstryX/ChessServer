@@ -47,6 +47,7 @@ public class SocketUserThread  {
                 state = 0;
                 //Creates a lobby
                 if (opcode.equals("crl")){
+                    System.out.println("1");
                     String lName = "";
                     String lPassword = "";
                     String lPlayer = "";
