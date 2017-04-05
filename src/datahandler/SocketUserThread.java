@@ -64,16 +64,16 @@ public class SocketUserThread  {
                     else lSecure="true";
                     
                     String lID = Integer.toString(ThreadLocalRandom.current().nextInt(100000, 200000 + 1));
-                    System.out.println(lName+" "+lID+" "+lPassword+" "+lPlayer+" "+lSecure);
                     LobbyPrivate newPrivateLobby = new LobbyPrivate(lName,lID,lPassword,lPlayer,lSecure);
                     LobbyPublic newPublicLobby = new LobbyPublic(lName,lID,lSecure);
                     privateLobbyData.add(newPrivateLobby);
                     publicLobbyData.add(newPublicLobby);
-                    System.out.println(publicLobbyData.get(0).getLobbyName()+" "+publicLobbyData.get(0).getLobbyID());
                 }
                 //Refreshes lobby list
                 if (opcode.equals("ref")){
+                    System.out.println("1");
                     out.writeObject(publicLobbyData);
+                    System.out.println("2");
                 }
                 //Checks for password
                 if (opcode.equals("pwc")){
