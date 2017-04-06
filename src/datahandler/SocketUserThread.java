@@ -82,7 +82,6 @@ public class SocketUserThread  {
                 }
                 //Checks for password
                 if (opcode.equals("joi")){
-                    System.out.println("Move request received");
                     String lName = "";
                     String lPassword = "";
                     String lPlayer = "";
@@ -134,6 +133,7 @@ public class SocketUserThread  {
                 //Makes a move
                 if (opcode.equals("mkm")){
                     System.out.println("Move request received");
+                    System.out.println(inputLine);
                     String lOriginY = "";
                     String lOriginX = "";
                     String lDestinationY = "";
