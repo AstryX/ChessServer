@@ -164,10 +164,10 @@ public class SocketUserThread  {
                                 if(gamesList.get(i).getLobbyPlayer1().equals(lWhite)){
                                     if(gamesList.get(i).getLobbyPlayer2().equals(lBlack)){
                                         if(lTurn.equals("1")){
-                                            gamesList.get(i).sendMsgP2(lOriginY+"/"+lOriginX+"/"+lDestinationY+"/"+lDestinationX+"$");
+                                            gamesList.get(i).sendMsgP1(lOriginY+"/"+lOriginX+"/"+lDestinationY+"/"+lDestinationX+"$");
                                         }
                                         else{
-                                            gamesList.get(i).sendMsgP1(lOriginY+"/"+lOriginX+"/"+lDestinationY+"/"+lDestinationX+"$");
+                                            gamesList.get(i).sendMsgP2(lOriginY+"/"+lOriginX+"/"+lDestinationY+"/"+lDestinationX+"$");
                                         }
                                     }
                                 }
