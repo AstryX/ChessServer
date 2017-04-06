@@ -63,7 +63,7 @@ public class ChessMatch {
     
     public void sendMsgP2(String theMessage){
         try{
-            p1out.writeObject(theMessage);
+            p2out.writeObject(theMessage);
         }
         catch(IOException ioex){
             System.err.println("I/O failed");
