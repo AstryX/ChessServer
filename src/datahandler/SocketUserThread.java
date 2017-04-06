@@ -43,6 +43,7 @@ public class SocketUserThread  {
         //out.writeObject(outputLine);
         try{
             while ((inputLine = (String)in.readObject()) != null) {
+                
                 String opcode = inputLine.substring(0,3);
                 state = 0;
                 //Creates a lobby
@@ -164,10 +165,10 @@ public class SocketUserThread  {
                                 if(gamesList.get(i).getLobbyPlayer1().equals(lWhite)){
                                     if(gamesList.get(i).getLobbyPlayer2().equals(lBlack)){
                                         if(lTurn.equals("1")){
-                                            gamesList.get(i).sendMsgP1(lOriginY+"/"+lOriginX+"/"+lDestinationY+"/"+lDestinationX+"$");
+                                            gamesList.get(i).sendMsgP2(lOriginY+"/"+lOriginX+"/"+lDestinationY+"/"+lDestinationX+"$");
                                         }
                                         else{
-                                            gamesList.get(i).sendMsgP2(lOriginY+"/"+lOriginX+"/"+lDestinationY+"/"+lDestinationX+"$");
+                                            gamesList.get(i).sendMsgP1(lOriginY+"/"+lOriginX+"/"+lDestinationY+"/"+lDestinationX+"$");
                                         }
                                     }
                                 }
